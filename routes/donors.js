@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-const querystring = require("querystring");
 
 router.post("/", async (req, res) => {
   const headers = {
@@ -12,7 +11,7 @@ router.post("/", async (req, res) => {
   };
   await axios
     .get(
-      "https://gokarmaphase3.api.crm8.dynamics.com/api/data/v9.1/leads?$select=fullname, subject, mobilephone, emailaddress2",
+      "https://gokarmaphase3.api.crm8.dynamics.com/api/data/v9.1/accounts?$select=name, new_constituenttype, _new_branch_value, new_email, new_mobilephone",
       {
         headers: headers
       }
@@ -21,7 +20,7 @@ router.post("/", async (req, res) => {
       res.send(response.data);
     })
     .catch(err => {
-      res.status(401).send(err);
+      res.send(err);
     });
 });
 

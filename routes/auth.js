@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
       headers: headers
     })
     .then(response => {
-      res.send(response.data.access_token);
+      res.json({ token: response.data.access_token });
     })
     .catch(err => res.status(401).send(err));
 });

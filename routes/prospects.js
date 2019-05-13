@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
-const querystring = require("querystring");
 
 router.post("/", async (req, res) => {
   const headers = {
@@ -18,7 +17,7 @@ router.post("/", async (req, res) => {
       }
     )
     .then(response => {
-      res.send(response.data);
+      res.json(response);
     })
     .catch(err => {
       res.status(401).send(err);
