@@ -3,10 +3,11 @@ const router = express.Router();
 const axios = require("axios");
 const config = require("../config/microsoft").microsoftConfig;
 const headers = require("../config/microsoft").microsoftHeaders;
+const authApi = require("../config/apiConfig").authApi;
 
 router.get("/", async (req, res) => {
   await axios
-    .post("https://login.microsoftonline.com/common/oauth2/token", config, {
+    .post(authApi, config, {
       headers: headers
     })
     .then(response => {

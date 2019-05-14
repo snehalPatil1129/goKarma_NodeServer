@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const querystring = require("querystring");
+const volunteersApi = require("../config/apiConfig").volunteersApi;
 
 router.post("/", async (req, res) => {
   const headers = {
@@ -11,7 +12,7 @@ router.post("/", async (req, res) => {
     "OData-Version": "4.0"
   };
   await axios
-    .get("https://gokarmaphase3.api.crm8.dynamics.com/api/data/v9.1/new_volunteers?$select=new_name, _new_branch_value, new_constituentvolunteertype, new_mobilephone, new_email", {
+    .get(volunteersApi, {
       headers: headers
     })
     .then(response => {

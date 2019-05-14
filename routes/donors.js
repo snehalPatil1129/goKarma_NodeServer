@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const donorsApi = require("../config/apiConfig").donorsApi;
 
 router.post("/", async (req, res) => {
   const headers = {
@@ -10,12 +11,9 @@ router.post("/", async (req, res) => {
     "OData-Version": "4.0"
   };
   await axios
-    .get(
-      "https://gokarmaphase3.api.crm8.dynamics.com/api/data/v9.1/accounts?$select=name, new_constituenttype, _new_branch_value, new_email, new_mobilephone",
-      {
-        headers: headers
-      }
-    )
+    .get(donorsApi, {
+      headers: headers
+    })
     .then(response => {
       res.send(response.data);
     })
